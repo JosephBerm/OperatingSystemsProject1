@@ -1,9 +1,17 @@
 import java.util.Random;
 import java.util.Scanner;
 
+import java.util.PriorityQueue;
+
 class Main {
-  public static void main(String[] args) {
-    
+  public static void main(String[] args)
+  {
+    run();
+  }
+
+
+  public static void run()
+  {
     int process;
     boolean active;
     //Arrival time: random int uniform dist.
@@ -21,8 +29,8 @@ class Main {
 
   //A value for k, which is the time interval during which processes may arrive
     System.out.println("Enter a Time Interval Value: ");
-
-    int k = scan.nextInt();
+    //int k = scan.nextInt();
+    int k = 50;
     
 
 
@@ -65,11 +73,28 @@ class Main {
     for (int i = 0; i < n;i++) 
     {
       
-      int m = rand.nextInt(k + 1);
+      int arrivalTime = rand.nextInt(k + 1);
 
-       System.out.println("Random arrival time generated is: " + m);
+       System.out.println("Random arrival time generated is: " + arrivalTime);
 
     }
 
+  }
+
+  public static int turnAroundTime(int currentTime, int arrivalTime)
+  {
+      int turnAround = currentTime - arrivalTime;
+      return turnAround;
+  }
+
+  public static int totalCPUTime(int n)
+  {
+      return 0;
+  }
+
+  public static void FIFO (PriorityQueue <Integer> a)
+  {
+      a.remove();
+      System.out.println(a.peek());
   }
 }
