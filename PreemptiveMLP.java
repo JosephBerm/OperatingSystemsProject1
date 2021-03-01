@@ -1,4 +1,4 @@
-public class PreemptiveMLP
+public class PreemptiveMLP extends process
 {
     
 }
