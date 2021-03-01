@@ -22,14 +22,13 @@ public class process
     Random rand = new Random();
     DecimalFormat numberFormatter = new DecimalFormat("#.00");
 
-    public process(int PN, int A, int PL)
+    public process(int PN, int A)
     {
         processNum = PN;
         active = A;
-        priorityLevel = PL;
     }
 
-    double[][] mainArray = new double[processNum][7];
+    public double[][] mainArray = new double[processNum][7];
 
     //look at pseudocode
 
@@ -38,6 +37,7 @@ public class process
         for(int i = 0; i < processNum; i++)
         {
             mainArray[i][indActive] = active;
+            System.out.println(i);
         }
     }
 
@@ -50,13 +50,13 @@ public class process
     {
         for (int i = 0; i < processNum;i++) 
         {
-          arrivalTime = rand.nextInt(timeInterval);
+          arrivalTime = Math.abs(rand.nextInt(timeInterval));
           mainArray[i][indArrivalTime] = arrivalTime;
           setTurnAroundTime(currentTime, arrivalTime);
         }
     }
 
-    public void setCPUTime(int d, int v)
+    public void setCPUTime(double d, double v)
     {
         for (int i = 0; i < processNum; i++) 
         {
@@ -84,6 +84,18 @@ public class process
         {
           priorityLevel = rand.nextInt(10) + 1;
           mainArray[i][indPriorityLevel] = priorityLevel;
+        }
+    }
+
+    public void outPut()
+    {
+        System.out.println("Process\tActive\tTotal CPU Time\tRemaining\tTurnaround Time\tPriority Level");
+        for(int i = 0; i < processNum; i++)
+        {
+            System.out.println(i + ")\t" + mainArray[i][indActive] + "\t" +
+            mainArray[i][indArrivalTime] + "\t" + mainArray[i][indTotalCPUTime] + "\t" +
+            + mainArray[i][indRemainingCPUTime] + "\t" + mainArray[i][indTurnAroundTime] + "\t" +
+            mainArray[i][indPriorityLevel]);
         }
     }
 }
