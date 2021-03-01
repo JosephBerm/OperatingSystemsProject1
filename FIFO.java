@@ -1,5 +1,4 @@
-public class FIFO
+public class FIFO extends process
 {
     
 }
-
