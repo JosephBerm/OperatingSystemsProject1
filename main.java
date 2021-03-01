@@ -50,13 +50,15 @@ class Main {
     System.out.println("Time Quantum is: " + q);
     
     process obj = new process(n, 1);
-    obj.setActive();
-    obj.setArrivalTime();
-    obj.setCPUTime(d, v);
-    obj.setPriorityLevel();
-    obj.outPut();
+    double[][] mainArray = new double[n][7];
+    obj.setActive(mainArray);
+    obj.setTimeInterval(k);
+    obj.setArrivalTime(mainArray);
+    obj.setCPUTime(d, v, mainArray);
+    obj.setPriorityLevel(mainArray);
+    obj.outPut(mainArray);
   }
-
+  
   /*public static void FIFO (PriorityQueue <Integer> a)
   {
       a.remove();
