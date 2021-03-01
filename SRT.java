@@ -1,4 +1,4 @@
-public class SRT
+public class SRT extends process
 {
     
 }
