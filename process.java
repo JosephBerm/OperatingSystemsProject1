@@ -1,26 +1,28 @@
+import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.util.Random;
 
 public class process
 {
-    int indActive = 1; 
-    int indArrivalTime = 2;
-    int indTotalCPUTime = 3;
-    int indRemainingCPUTime = 4;
-    int indTurnAroundTime = 5;
-    int indPriorityLevel = 6;
-    int processNum;
-    int active;
-    int arrivalTime;
-    double totalCPUTimes;
-    double RemainingCPUTimes;
-    int turnAroundTime;
-    int priorityLevel;
-    int timeInterval;
-    int currentTime = 0;
+    public static int indActive = 1; 
+    public static int indArrivalTime = 2;
+    public static int indTotalCPUTime = 3;
+    public static int indRemainingCPUTime = 4;
+    public static int indTurnAroundTime = 5;
+    public static int indPriorityLevel = 6;
+    public static int processNum;
+    public static int active;
+    public static int arrivalTime;
+    public static double totalCPUTimes;
+    public static double RemainingCPUTimes;
+    public static int turnAroundTime;
+    public static int priorityLevel;
+    public static int timeInterval;
+    public static int currentTime = 0;
 
-    Random rand = new Random();
-    DecimalFormat numberFormatter = new DecimalFormat("#.00");
+
+    static Random rand = new Random();
+    static NumberFormat numberFormatter = new DecimalFormat("#0.00");
 
     public process(int PN, int A)
     {
@@ -28,75 +30,91 @@ public class process
         active = A;
     }
 
-    public double[][] mainArray = new double[processNum][7];
+    
 
     //look at pseudocode
 
-    public void setActive()
+    public static void setActive(double[][] arr)
     {
-        for(int i = 0; i < processNum; i++)
+        //mainArray = new double[processNum][7];
+        System.out.println("main array length: " + arr.length);
+       // int row = 0;
+        //while(row < mainArray)
+        for(int row = 0; row < arr.length; row++)
         {
-            mainArray[i][indActive] = active;
-            System.out.println(i);
+            arr[row][indActive] = active;
+            //System.out.print("SET ACTIVE " + mainArray[row][indActive]);
         }
     }
 
-    public void setTimeInterval(int k)
+    public static void setTimeInterval(int k)
     {
         timeInterval = k;
     }
 
-    public void setArrivalTime()
+    public static void setArrivalTime(double[][] arr)
     {
-        for (int i = 0; i < processNum;i++) 
+        //mainArray = new double[processNum][7];
+        for (int row = 0; row < arr.length; row++) 
         {
           arrivalTime = Math.abs(rand.nextInt(timeInterval));
-          mainArray[i][indArrivalTime] = arrivalTime;
-          setTurnAroundTime(currentTime, arrivalTime);
+          arr[row][indArrivalTime] = arrivalTime;
+          //System.out.print("\nSET ARRIVAL TIME" + mainArray[row][indArrivalTime]);
+          setTurnAroundTime(currentTime, arrivalTime, row, arr);
+          
         }
     }
 
-    public void setCPUTime(double d, double v)
+    public static void setCPUTime(double d, double v, double[][] arr)
     {
-        for (int i = 0; i < processNum; i++) 
+        //mainArray = new double[processNum][7];
+        for (int row = 0; row < arr.length; row++) 
         {
             double cpuTime = rand.nextGaussian() *d+v;
             numberFormatter.format(cpuTime);
-
+            System.out.println("THIS IS THE CPU TIME: " + numberFormatter.format(cpuTime));
             RemainingCPUTimes = cpuTime;
-            mainArray[i][indTotalCPUTime] = cpuTime;
-            mainArray[i][indRemainingCPUTime] = RemainingCPUTimes;
+            arr[row][indTotalCPUTime] = cpuTime;
+            arr[row][indRemainingCPUTime] = RemainingCPUTimes;
+            //System.out.println("SET CPUTime " + mainArray[row][indTotalCPUTime]);
         }
     }
 
-    public void setTurnAroundTime(int currentT, int arrivalTime)
+    public static void setTurnAroundTime(int currentT, int arrivalTime, int row, double[][] arr)
   {
-    for (int i = 0; i < processNum; i++) 
-    {
+      //mainArray = new double[processNum][7];
+
       int turnAround = currentT - arrivalTime;
-      mainArray[i][indTurnAroundTime] = turnAround;
-    }
+      arr[row][indTurnAroundTime] = turnAround;
+
+      //System.out.println(row + ")\t" + "SET TAT" + mainArray[row][indTurnAroundTime]);
   }
 
-    public void setPriorityLevel()
+    public static void setPriorityLevel(double[][] arr)
     {
-        for (int i = 0; i < processNum; i++) 
+        //mainArray = new double[processNum][7];
+        for (int row = 0; row < arr.length; row++) 
         {
           priorityLevel = rand.nextInt(10) + 1;
-          mainArray[i][indPriorityLevel] = priorityLevel;
+          arr[row][indPriorityLevel] = priorityLevel;
+          //System.out.print("\nSET PL " + mainArray[row][indPriorityLevel]);
         }
     }
 
-    public void outPut()
+    public static String outPut(double[][] arr)
     {
-        System.out.println("Process\tActive\tTotal CPU Time\tRemaining\tTurnaround Time\tPriority Level");
-        for(int i = 0; i < processNum; i++)
+       // mainArray = new double[processNum][7];
+        System.out.println("~P~\t~Act~\t~ATime~\t~CPUT~\t~RT~\t~TAT~\t~PL~");
+        //System.out.println("\n\n1/0 process 4: " + mainArray[4][1] + "\n\n");
+        for(int row = 0; row < arr.length; row++)
         {
-            System.out.println(i + ")\t" + mainArray[i][indActive] + "\t" +
-            mainArray[i][indArrivalTime] + "\t" + mainArray[i][indTotalCPUTime] + "\t" +
-            + mainArray[i][indRemainingCPUTime] + "\t" + mainArray[i][indTurnAroundTime] + "\t" +
-            mainArray[i][indPriorityLevel]);
+            System.out.print("\n");
+            for(int column = 0; column < arr[row].length; column++)
+            {
+                System.out.print("~" + arr[row][column] + "~" + "\t");
+            }
         }
+        return "";
     }
 
     
