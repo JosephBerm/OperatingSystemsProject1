@@ -29,17 +29,18 @@ public class process
         processNum = PN;
         active = A;
     }
-
-    
-
     //look at pseudocode
+
+    public static void setProcess(double [][] arr)
+    {
+        for(int row = 0; row < arr.length; row++)
+        {
+            arr[row][0] = row + 1;
+        }
+    }
 
     public static void setActive(double[][] arr)
     {
-        //mainArray = new double[processNum][7];
-        System.out.println("main array length: " + arr.length);
-       // int row = 0;
-        //while(row < mainArray)
         for(int row = 0; row < arr.length; row++)
         {
             arr[row][indActive] = active;
@@ -54,27 +55,22 @@ public class process
 
     public static void setArrivalTime(double[][] arr)
     {
-        //mainArray = new double[processNum][7];
         for (int row = 0; row < arr.length; row++) 
         {
           arrivalTime = Math.abs(rand.nextInt(timeInterval));
           arr[row][indArrivalTime] = arrivalTime;
           //System.out.print("\nSET ARRIVAL TIME" + mainArray[row][indArrivalTime]);
           setTurnAroundTime(currentTime, arrivalTime, row, arr);
-          
         }
     }
 
     public static void setCPUTime(double d, double v, double[][] arr)
     {
-        //mainArray = new double[processNum][7];
         for (int row = 0; row < arr.length; row++) 
         {
             double cpuTime = rand.nextGaussian() *d+v;
-            numberFormatter.format(cpuTime);
-            System.out.println("THIS IS THE CPU TIME: " + numberFormatter.format(cpuTime));
-            RemainingCPUTimes = cpuTime;
-            arr[row][indTotalCPUTime] = cpuTime;
+            RemainingCPUTimes = Math.abs(Double.parseDouble(numberFormatter.format(cpuTime)));
+            arr[row][indTotalCPUTime] = Math.abs(Double.parseDouble(numberFormatter.format(cpuTime)));
             arr[row][indRemainingCPUTime] = RemainingCPUTimes;
             //System.out.println("SET CPUTime " + mainArray[row][indTotalCPUTime]);
         }
@@ -82,17 +78,13 @@ public class process
 
     public static void setTurnAroundTime(int currentT, int arrivalTime, int row, double[][] arr)
   {
-      //mainArray = new double[processNum][7];
-
       int turnAround = currentT - arrivalTime;
-      arr[row][indTurnAroundTime] = turnAround;
-
+      arr[row][indTurnAroundTime] = Math.abs(turnAround);
       //System.out.println(row + ")\t" + "SET TAT" + mainArray[row][indTurnAroundTime]);
   }
 
     public static void setPriorityLevel(double[][] arr)
     {
-        //mainArray = new double[processNum][7];
         for (int row = 0; row < arr.length; row++) 
         {
           priorityLevel = rand.nextInt(10) + 1;
@@ -103,9 +95,7 @@ public class process
 
     public static String outPut(double[][] arr)
     {
-       // mainArray = new double[processNum][7];
         System.out.println("~P~\t~Act~\t~ATime~\t~CPUT~\t~RT~\t~TAT~\t~PL~");
-        //System.out.println("\n\n1/0 process 4: " + mainArray[4][1] + "\n\n");
         for(int row = 0; row < arr.length; row++)
         {
             System.out.print("\n");
