@@ -19,7 +19,7 @@ class Main {
     //Remaining CPU Time: initialized to Ti.
     
     
-    Process ob = new Process(15,1,0,20,20,6);
+    process ob = new process(15,1,0,20,20,6);
     
 
     Scanner scan = new Scanner(System.in);
@@ -33,8 +33,7 @@ class Main {
 
   //A value for k, which is the time interval during which processes may arrive
     System.out.println("Enter a Time Interval Value: ");
-    //int k = scan.nextInt();
-    int k = 50;
+    int k = scan.nextInt();
     
 
 
@@ -47,7 +46,7 @@ class Main {
  //The standard deviation of total CPU time, v
     System.out.println("Enter The Standard Deviation CPU Time: ");
 
-    int v = scan.nextInt();
+    Double v = scan.nextDouble();
 
     
   //The quantum q, for the last scheduling algorithm.
