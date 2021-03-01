@@ -6,7 +6,6 @@ class Main {
   public static void main(String[] args)
   {
     run();
-
   }
   public static void run()
   {
@@ -28,12 +27,12 @@ class Main {
   //The mean of total CPU time, d.
     System.out.println("Enter The Mean Total CPU Time: ");
 
-    int d = scan.nextInt();
+    double d = scan.nextDouble();
 
  //The standard deviation of total CPU time, v
     System.out.println("Enter The Standard Deviation CPU Time: ");
 
-    Double v = scan.nextDouble();
+    double v = scan.nextDouble();
 
   //The quantum q, for the last scheduling algorithm.
     System.out.println("Enter a Time Quantum: ");
@@ -50,8 +49,12 @@ class Main {
 
     System.out.println("Time Quantum is: " + q);
     
-    //Priority level for the last algorithm
-    
+    process obj = new process(n, 1);
+    obj.setActive();
+    obj.setArrivalTime();
+    obj.setCPUTime(d, v);
+    obj.setPriorityLevel();
+    obj.outPut();
   }
 
   /*public static void FIFO (PriorityQueue <Integer> a)
