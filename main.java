@@ -2,6 +2,7 @@
 import java.util.Scanner;
 import java.util.PriorityQueue;
 
+
 class Main {
   public static void main(String[] args)
   {
@@ -49,8 +50,10 @@ class Main {
 
     System.out.println("Time Quantum is: " + q);
     
+    System.out.println("\n~~~~~~~~~~TABLE OF PROCESSES:~~~~~~~~~~\n");
     process obj = new process(n, 1);
     double[][] mainArray = new double[n][7];
+    obj.setProcess(mainArray);
     obj.setActive(mainArray);
     obj.setTimeInterval(k);
     obj.setArrivalTime(mainArray);
@@ -58,10 +61,4 @@ class Main {
     obj.setPriorityLevel(mainArray);
     obj.outPut(mainArray);
   }
-  
-  /*public static void FIFO (PriorityQueue <Integer> a)
-  {
-      a.remove();
-      System.out.println(a.peek());
-  }*/
 }
