@@ -64,32 +64,38 @@ class Main
     obj.outPut(mainArray);
 
     int currentTime = 0;
-
+    double TT = 0;
     for (int row = 0; row < n; row++)
     {
-      while(mainArray[row][obj.indRemainingCPUTime] != 0)
-      {
         // check if each process is active, while no process is active, increment t
         if (mainArray[row][obj.indActive] == 0)
         {
           currentTime++;
         }
+        //FIFO
+        for(int i = 0; i < mainArray.length; i++)
+        {
+          FIFO fifo = new FIFO();
+          double rT = fifo.algo(mainArray, i)
+          while(rT > 0)
+          {
+            rT--;
+            currentTime++;
+          }
+          TT += (currentTime - mainArray[i][obj.indArrivalTime]);
+        }
+        //SJF
+        
+        //SRT
 
-        FIFO fifo = new FIFO();
-        fifo.algo(mainArray);
+        //Preemptive Multi-level Priority Scheduling
 
 
-
-      }
-
-      // Choose active processes pi according to scheduling algorithm
-      mainArray[row][obj.indRemainingCPUTime] = mainArray[row][obj.indRemainingCPUTime--];
 
       if (mainArray[row][4] == 0)
       {
         // set active flag of pi to 0
-        mainArray[n][1] = 0;
-        mainArray[n][5] = currentTime - mainArray[n][2];
+        mainArray[n][obj.indActive] = 0;
       }
     }
   }
