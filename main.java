@@ -76,7 +76,7 @@ class Main
         for(int i = 0; i < mainArray.length; i++)
         {
           FIFO fifo = new FIFO();
-          double rT = fifo.algo(mainArray, i)
+          double rT = fifo.algo(mainArray, i);
           while(rT > 0)
           {
             rT--;
