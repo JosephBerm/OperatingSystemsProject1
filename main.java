@@ -102,7 +102,9 @@ class Main
         }
         System.out.println("TTSJF:\t" + TTSJF);
         //SRT
-        
+        //sort based off of remaining time
+        //get shortest remaining time
+        //
         //Preemptive Multi-level Priority Scheduling
 
 
