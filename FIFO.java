@@ -1,4 +1,6 @@
+import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Arrays;
 
 
 public class FIFO
@@ -11,21 +13,24 @@ public class FIFO
     public static int indPriorityLevel = 6;
 
 
-    public static int algo(double [][] arr)
+    public static double algo(double [][] arr, int n)
     {
-        double smallest;
-        for(int row = 0; row < arr.length; row++)
+        Arrays.sort(arr, new Comparator<double[]>()
         {
-            smallest = arr[row][indArrivalTime];
-            if(smallest < arr[row][indArrivalTime])
+            @Override
+            public int compare(double[] o1, double[] o2)
             {
-                
+                double diff = o1[2] - o2[2];
+                return diff < 0 ? - 1 : diff == 0 ? 0 : 1;
             }
-        }
+            
+        });
+        return arr[n][indRemainingCPUTime];
+    }
+}
+/**/
 
         /*int peek = pQueue.peek();
         pQueue.poll();
         return peek;*/
-        return 0;
-    }
-}
+        
