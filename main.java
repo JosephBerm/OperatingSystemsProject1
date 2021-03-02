@@ -64,7 +64,9 @@ class Main
     obj.outPut(mainArray);
 
     int currentTime = 0;
-    double TT = 0;
+    double TTFIFO = 0;
+    double TTSJF = 0;
+    double TTSRT = 0;
     for (int row = 0; row < n; row++)
     {
         // check if each process is active, while no process is active, increment t
@@ -72,6 +74,7 @@ class Main
         {
           currentTime++;
         }
+    }
         //FIFO
         for(int i = 0; i < mainArray.length; i++)
         {
@@ -82,21 +85,35 @@ class Main
             rT--;
             currentTime++;
           }
-          TT += (currentTime - mainArray[i][obj.indArrivalTime]);
+          TTFIFO += Math.abs((currentTime - mainArray[i][obj.indArrivalTime]));
         }
+        System.out.println("\n\nTTFIFO:\t" + TTFIFO);
         //SJF
-        
+        for(int i = 0; i < mainArray.length; i++)
+        {
+          SJF shortestJobFirst = new SJF();
+          double rT = shortestJobFirst.algo(mainArray, i);
+          while(rT > 0)
+          {
+            rT--;
+            currentTime++;
+          }
+          TTSJF += (currentTime - mainArray[i][obj.indRemainingCPUTime]);
+        }
+        System.out.println("TTSJF:\t" + TTSJF);
         //SRT
-
+        
         //Preemptive Multi-level Priority Scheduling
 
 
-
+    for (int row = 0; row < n; row++)
+    {
       if (mainArray[row][4] == 0)
       {
         // set active flag of pi to 0
         mainArray[n][obj.indActive] = 0;
       }
     }
+    
   }
 }
