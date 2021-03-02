@@ -1,4 +1,4 @@
-public class SJF extends process
+public class SJF
 {
     
 }
