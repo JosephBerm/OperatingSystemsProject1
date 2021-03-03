@@ -1,5 +1,7 @@
-
-//import java.util.Random;
+//AUTHORS:
+// Joseph Bermudez   PID: 6052768
+// Aiman Kayad       PID: 5975108
+import java.util.Random;
 import java.util.Scanner;
 import java.util.PriorityQueue;
 import java.util.Queue;
