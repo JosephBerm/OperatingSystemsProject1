@@ -1,3 +1,6 @@
+//AUTHORS:
+// Joseph Bermudez   PID: 6052768
+// Aiman Kayad       PID: 5975108
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.util.Random;
