@@ -1,3 +1,6 @@
+//AUTHORS:
+// Joseph Bermudez   PID: 6052768
+// Aiman Kayad       PID: 5975108
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Arrays;
