@@ -10,21 +10,23 @@ public class SJF
     public static int indRemainingCPUTime = 4;
     public static int indTurnAroundTime = 5;
     public static int indPriorityLevel = 6;
-
+    static SortingArray sort = new SortingArray();
 
     public static double algo(double [][] arr, int n)
     {
-        Arrays.sort(arr, new Comparator<double[]>()
-        {
-            @Override
-            public int compare(double[] o1, double[] o2)
-            {
-                double diff = o1[4] - o2[4];
-                return diff < 0 ? - 1 : diff == 0 ? 0 : 1;
-            }
-            
-        });
+        arr = sort.sortArr(arr, 4);
         return arr[n][indRemainingCPUTime];
     }
+
+        // Arrays.sort(arr, new Comparator<double[]>()
+        // {
+        //     @Override
+        //     public int compare(double[] o1, double[] o2)
+        //     {
+        //         double diff = o1[4] - o2[4];
+        //         return diff < 0 ? - 1 : diff == 0 ? 0 : 1;
+        //     }
+            
+        // });
 }
 
